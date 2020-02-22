@@ -8,11 +8,35 @@
 	<style>
 			.cbar
 			{
-				width:20px;
-				height:20px;
+				width:10px;
+				height:10px;
 				display:inline-block;
 				cursor:pointer;
 				border:2px solid transparent;
+				margin-top:4px;
+			}
+			.fakelink
+			{
+				cursor:pointer;
+				text-decoration:underline;
+				color:firebrick;
+				transition-duration: 0.5s;
+			}
+			:hover.fakelink
+			{
+				cursor:pointer;
+				text-decoration:underline;
+				color:red;
+				transition-duration: 0.5s;
+			}
+			select
+			{
+				border: none;
+				padding: 1px 1px;
+			}
+			.subsec
+			{
+				font-weight: bold;
 			}
 	</style>
 	<script type="text/javascript" src="js/html2canvas.js"></script>
@@ -51,12 +75,16 @@
 			{
 				return document.getElementById(id);
 			}
+			
+			function get_unit_string()
+			{
+				return view_units == "1"?"mm":view_units=="2" ? "in" : "cm";
+			}
 
 			function set_view_units(v)
 			{
-				view_units=v;
-				$id("vunits").innerHTML=v=="1"?"mm":v=="2" ? "in" : "cm";
-				$id("flvunits").value = $id("vunits").innerHTML;
+				view_units = v;
+				$id("flvunits").value = get_unit_string();
 				//setCookie("units", v=="1"?"mm":v=="2" ? "in" : "cm", 1000);
 				//recalc_units();
 			}
@@ -72,10 +100,8 @@
 				if (view_units==1)
 					set_vol_and_size(vol, xsize, ysize, zsize);
 				else if (view_units==2)
-					//file in mm, view in inches
 					set_vol_and_size(vol, xsize, ysize, zsize);
 				else
-					//file in inches, view in mm
 					set_vol_and_size(vol, xsize, ysize, zsize);
 			}
 			
@@ -208,7 +234,7 @@
 				
 				var geo=new THREE.Geometry;
 				geo.vertices=vf_data.vertices;
-				geo.faces=vf_data.faces;				
+				geo.faces=vf_data.faces;
 				geo.computeBoundingBox();
 					
 				geo.computeCentroids();
@@ -254,7 +280,7 @@
 				guess_file_units(xsize,ysize,zsize);
 				recalc_units();
 				
-				$id('ifilename').innerHTML=filename.substr(0,20);
+				$id('ifilename').innerHTML=filename;
 				$id('ifilename').style.visibility='visible';
 				
 				//document.querySelector('input[name="material"]:checked').value,$id('pden').value,$id('suview').value
@@ -426,38 +452,8 @@
 				//alert($id('fileselect').files[0]);
 				upload_file($id('fileselect').files[0]);
 			}
-			
-					
-			
-			function open_img()
-			{
-				
-				$('#cjcwrap').html2canvas({
-        			onrendered: function (canvas) {
-					//Set hidden field's value to image data (base-64 string)
-					$('#img_val').val(canvas.toDataURL("image/png"));
-					var fllname = baseName($('#flname').val());
-					
-					$.ajax({
-						  type: "POST",
-						  async : false,
-						  url: "save.php",
-						  data: { imdata: $('#img_val').val() , name: fllname },
-						  success: function(response) { 
-						var image = new Image();
-					image.src = 'http://think3d.in/landing-pages/3d-model-price-calculator/'+ fllname + '.png';
-			
-					var w = window.open("");
-					w.document.write(image.outerHTML);
-						   }
-					});
-		  
-				}  });
-			
-				
-			}
-			
-						function setCookie(cname, cvalue, exdays)
+
+			function setCookie(cname, cvalue, exdays)
 			{
 				var d = new Date();
 				d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -494,9 +490,10 @@
 			
 			function set_vol_and_size(vol,xsize,ysize,zsize)
 			{
-				var p=view_units==2?0:0;
-				$id('ivol').innerHTML=numberWithCommas(vol.toFixed(p));
-				$id('isize').innerHTML=numberWithCommas(xsize.toFixed(p))+' x '+numberWithCommas(ysize.toFixed(p))+' x '+numberWithCommas(zsize.toFixed(p));
+				var p = view_units == "1" ? 1 : 2;
+				$id('ivol').innerHTML=numberWithCommas(vol.toFixed(p)) + ' ' + get_unit_string() + '<sup>3</sup>';
+				$id('iarea').innerHTML=numberWithCommas(area.toFixed(p)) + ' ' + get_unit_string() + '<sup>2</sup>';
+				$id('isize').innerHTML=numberWithCommas(xsize.toFixed(p)) + ' ' + get_unit_string() + ' x '+ numberWithCommas(ysize.toFixed(p)) + ' ' + get_unit_string() + ' x ' + numberWithCommas(zsize.toFixed(p)) + ' ' + get_unit_string();
 				$id('flsize').value = $id('isize').innerHTML;
 				$id('flvolume').value = $id('ivol').innerHTML;				
 			}
@@ -666,22 +663,21 @@
 		<div style="position: absolute; width: calc(50% - 100px); margin: 10px 50px 50px 50px">
 	    	<div id="cjcwrap" style="position:relative;border:1px dashed #000000;background:#EEEEEE;display:inline-block; float:right">
 					<div id="cjcdrag" style="position:absolute;height:100px;width:350px;text-align:center;">
-                        <span id="titlet1" style="font:20px Arial;color:#343434;">Drag & drop your STL file here</span><br>
-                        <span id="titlet2" style="font:14px Arial;color:#3434AB;cursor:pointer;" onClick="if (waiting) return false;$id('fileselect').click();">or <u>browse your computer</u></span>													
+                        <span id="titlet1" style="font:20px Arial;color:#343434;">drop your model file here</span><br>
+                        <span id="titlet2" class="fakelink" style="font:14px Arial;" onClick="if (waiting) return false;$id('fileselect').click();">or browse</span>													
 					</div>				
 					<div id="cjcpbar" style="display:none;position:absolute;height:50px;width:350px;text-align:center;">
-						<span id="pgt1" style="font:15px Arial;color:#343478;">Reading file ...</span><br>
+						<span id="pgt1" style="font:15px Arial;color:#343434;">reading file...</span><br>
 						<progress id="file_pbar"  value="0" max="1"></progress><br><span id="fcancel" style="text-decoration:underline;cursor:pointer;" onClick="cancel_download=true;">(cancel)</span>
 					</div>
 					<div id="cjcproc" style="display:none;position:absolute;height:50px;width:350px;text-align:center;">
-						<span id="prt1" style="font:15px Arial;color:#343478;">Processing ...</span><br>
+						<span id="prt1" style="font:15px Arial;color:#343434;">processing...</span><br>
 					</div>				
 					<div id="cjc" onMouseDown="$id('rrotate2').checked=true;controls.autoRotate=false;" style="display:none;position:absolute;left:0px;top:0px;margin:0 auto;text-align:center;"></div>
 				 </div>
             <div style="clear:both"></div>
             <div style="width:100%; margin-top:10px">
-                 	<div class="cact" onClick="open_img();" style="float:left"><span>Snap a picture</span></div>
-                    <div style="cursor:pointer;text-decoration:underline;color:#000055; float:right" onClick="reset();">Upload New STL</div>
+                    <div class="fakelink" style="float:right" onClick="reset();">upload new model</div>
             </div>
             
                        
@@ -691,102 +687,68 @@
 		<div class="" style="position: absolute; top: 0px; left: 50%; margin: 10px 50px 50px 50px; width: calc(50% - 100px) !important">
 			
 			<div id="statswrap" >
-				<div style="width:400px;overflow:hidden;">
-					<!--<h1 id="ifilename" style="visibility:hidden;">_</h1>-->
-				
-					<div class="cinfo">
-						<h3>Model info</h3>
-						<table>
-                        	<tr style="vertical-align:bottom;">
-								<th>Name </th>
-								<td id="ifilename" style="width:50%;"></td>
-							</tr>
-							<tr style="vertical-align:bottom;">
-								<th>Size </th>
-								<td id="isize" style="width:50%;"></td>
-							</tr>
-							<tr>
-								<th>Volume (<span id="vunits">mm</span><sup>3</sup>)</th>
-								<td id="ivol" style="text-align:left;"></td>
-							</tr>
-                            <tr>
-                            	<th>Units</th>
-                                <td>
-                                	<select id="suview" name="suview" onChange="set_view_units(this.value);re_cal_price()"><option value="1">mm</option><option value="2">in</option><option value="3">cm</option></select>
-                                </td>
-                            </tr>
-							<tr style="display:none">
-								<th>File units</th>
-								<td>
-									
-                                    <input type="radio" id="rmm" onClick="set_file_units(1);" name="runits" value="0" checked>mm<br>
-									<input type="radio" id="rin" onClick="set_file_units(2);" name="runits" value="1">in<br>
-                                    <input type="radio" id="rcm" onClick="set_file_units(3);" name="runits" value="2">cm<br>
-								</td>
-							</tr>
-						</table>
-					</div>
-					
-					
-					<div class="cinfo">
-						<h3>Options</h3>
-						<table>
-							<tr>
-								<th>Display</th>
-								<td style="width:50%;">
-                                	<select name="rshade" onChange="set_shading(this.value)">
-                                    	<option value="0">Flat Shading</option>
-                                        <option value="1">Smooth Shading</option>
-                                        <option value="2">Wireframe</option>
-                                        
-                                    </select>
-								</td>
-							</tr>
-							<tr>
-								<th>Color</th>
-								<td id="cpal" style="width:50%;">
-																	
-									<div class="cbar" id="red_color" onClick="set_color(this,'#FF0000');" style="background:#FF0000;"></div>
-									
-									<div class="cbar" id="gray_color" onClick="set_color(this,'#909090');" style="background:#909090;border:2px solid #012101;"></div>
-									<div class="cbar" id="azure_color" onClick="set_color(this,'#00FFFF');" style="background:#00FFFF;"></div>
-									
-									<div class="cbar" id="purple_color" onClick="set_color(this,'#703487');" style="background:#703487;"></div>
-									<div class="cbar" id="darkblue_color" onClick="set_color(this,'#102075');" style="background:#102075;"></div>
-									<div class="cbar" id="brown_color" onClick="set_color(this,'#654321');" style="background:#654321;"></div>
-													
-												</td>
-							</tr>
-							<tr>
-								<th>Rotation</th>
-								<td>
-                                	<select name="rrotate" onChange="set_rotation1(this.value)">
-                                    	<option value="0">Yes</option>
-                                        <option value="1">No</option>
-                                    </select>
-								</td>
-							</tr>
-						</table>
-					</div>
+				<div style="overflow:hidden;">
 
-					<div class="cinfo">
-						<h3>Choose Material</h3>
-                        <table>
-                        	<tr>
-                            	<td style="width:100%">                                    
-                                    <input type="radio" name="material" value="FDM" title="Thermoplastics like PLA, ABS, Nylon, Flexible ABS etc" onClick="re_cal_price()" checked>&nbsp;FDM &nbsp;&nbsp; <input type="radio" name="material" value="SLA" onClick="re_cal_price()" title="Resin variants including transparent, castable, opaque, tough etc">&nbsp;SLA &nbsp;&nbsp;<input type="radio" name="material" value="SLS" onClick="re_cal_price()" title="PA Nylon powder">SLS &nbsp;
-                                    </td>
-                            </tr>
-                        </table>
-                        
-					<!--<div class="cact" onClick="open_img();"><span>Snap a picture</span></div>
-						<div>Check if print-ready (coming soon)</div>
-					</div>
-
-					
-					<div style="width:100%;text-align:center;cursor:pointer;text-decoration:underline;color:#000055;" onClick="reset();">View another STL</div>-->
-						
-				</div>
+<ul>
+	<li><span class="subsec">model info</span>
+	<ul>
+		<li>name: <span id="ifilename"></span></li>
+		<li>size: <span id="isize"></span></li>
+		<li>volume: <span id="ivol"></span></li>
+		<li>surface area: <span id="iarea"></span></li>
+		<li>units:
+		<select id="suview" name="suview" onChange="set_view_units(this.value); recalc_units();">
+			<option value="1">mm</option>
+			<option value="2">in</option>
+			<option value="3">cm</option>
+		</select>
+		</li>
+		<li style="display:none">file units:
+		<input type="radio" id="rmm" onClick="set_file_units(1);" name="runits" value="0" checked>mm<br>
+		<input type="radio" id="rin" onClick="set_file_units(2);" name="runits" value="1">in<br>
+		<input type="radio" id="rcm" onClick="set_file_units(3);" name="runits" value="2">cm<br>
+		</li>
+	</ul>
+	</li>
+	<li><span class="subsec">display</span>
+	<ul>
+		<li>style: 
+		<select name="rshade" onChange="set_shading(this.value)">
+			<option value="0">flat shading</option>
+			<option value="1">smooth shading</option>
+			<option value="2">wireframe</option>
+		</select>
+		</li>
+		<li id="cpal">color: 
+		<div class="cbar" id="red_color" onClick="set_color(this,'#FF0000');" style="background:#FF0000;"></div>
+		<div class="cbar" id="gray_color" onClick="set_color(this,'#909090');" style="background:#909090;"></div>
+		<div class="cbar" id="azure_color" onClick="set_color(this,'#00FFFF');" style="background:#00FFFF;"></div>
+		<div class="cbar" id="purple_color" onClick="set_color(this,'#703487');" style="background:#703487;"></div>
+		<div class="cbar" id="darkblue_color" onClick="set_color(this,'#102075');" style="background:#102075;"></div>
+		<div class="cbar" id="brown_color" onClick="set_color(this,'#654321');" style="background:#654321;"></div>
+		</li>
+		<li>rotation: 
+		<select name="rrotate" onChange="set_rotation1(this.value)">
+			<option value="0">enabled</option>
+			<option value="1">disabled</option>
+		</select>
+		</li>
+	</ul>
+	</li>
+	<li><span class="subsec">material</span>
+	<ul>
+		<li>
+		<input type="radio" name="material" value="PLA" onClick="re_cal_price()" checked>PLA
+		</li>
+		<li>
+		<input type="radio" name="material" value="ABS" onClick="re_cal_price()">ABS
+		</li>
+		<li>
+		<input type="radio" name="material" value="nylon" onClick="re_cal_price()">nylon
+		</li>
+	</ul>
+	</li>
+</ul>
                 
                 <div class="cinfo" id="priceesdiv" style="display:none">
 						<h3>Estimated  Price</h3>
@@ -920,9 +882,7 @@
 			var units_cookie=getCookie("units");
 			suview.value=units_cookie=="in"?2:1;
 			view_units=units_cookie=="in"?2:1;
-			$id("vunits").innerHTML=units_cookie=="in"?"in":"mm";
 			
-						
 			//this function is being called from outside (from embeded page)
 			function set_rotation(b)
 			{
