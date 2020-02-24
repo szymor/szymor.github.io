@@ -39,13 +39,13 @@
 				font-weight: bold;
 			}
 	</style>
-	<script type="text/javascript" src="js/html2canvas.js"></script>
 	<script src="js/three.min.js"></script>
 	<script src="js/webgl_detector.js"></script>
 	<script src="js/OrbitControls.js"></script>
 	<script src="js/parser.js"></script>
 	<script src="js/read_internal.js"></script>
 	<script src="js/read_external.js"></script>
+	<script src="js/cost_calc.js"></script>
 	<script>
 			var is_ie = !!window.MSStream;
 			var waiting=false;
@@ -97,12 +97,8 @@
 			
 			function recalc_units()
 			{
-				if (view_units==1)
-					set_vol_and_size(vol, xsize, ysize, zsize);
-				else if (view_units==2)
-					set_vol_and_size(vol, xsize, ysize, zsize);
-				else
-					set_vol_and_size(vol, xsize, ysize, zsize);
+				set_vol_and_size(vol, xsize, ysize, zsize);
+				update_estimation();
 			}
 			
 			function do_resize()
@@ -116,15 +112,17 @@
 				$id('cjcwrap').style.width=height+'px';
 				//$id('cjcdrag').style.top='40%';
 				//$id('cjcdrag').style.left='12%';
-				$id('cjcpbar').style.top='38%';
-				$id('cjcpbar').style.left='12%';
-				$id('cjcproc').style.top='38%';
-				$id('cjcproc').style.left='12%';
+				//$id('cjcpbar').style.top='38%';
+				//$id('cjcpbar').style.left='12%';
+				//$id('cjcproc').style.top='38%';
+				//$id('cjcproc').style.left='12%';
 								
 				var rsize_width=$id("cjcwrap").getBoundingClientRect().width;
 				var rsize_height=$id("cjcwrap").getBoundingClientRect().height;
 				$id('cjcdrag').style.top = ((rsize_height - 70) / 2).toString(10) + 'px';
 				$id('cjcdrag').style.left = ((rsize_width - 350) / 2).toString(10) + 'px';
+				$id('cjcpbar').style.top = $id('cjcproc').style.top = $id('cjcdrag').style.top
+				$id('cjcpbar').style.left = $id('cjcproc').style.left = $id('cjcdrag').style.left
 				renderer.setSize(rsize_width-5, rsize_height-5);
 			}
 			
@@ -282,27 +280,6 @@
 				
 				$id('ifilename').innerHTML=filename;
 				$id('ifilename').style.visibility='visible';
-				
-				//document.querySelector('input[name="material"]:checked').value,$id('pden').value,$id('suview').value
-				
-				ppp = re_real_price(document.querySelector('input[name="material"]:checked').value,'INR',$id('suview').value) ;
-				$id('esprice').value = ppp;
-				$id('esprice1').innerHTML = ppp;
-				//setTimeout(function(){$id('statswrap').style.width='280px';}, 500);
-								
-								
-				//$id('cjcwrap').addEventListener('dragover', handleDragOver, false);
-				//$id('cjcwrap').addEventListener('drop', handleFileDrop, false);
-				if(!examp)
-				{
-					$id('priceesdiv1').style.display = "none";
-					$id('priceesdiv').style.display = "block";				
-				}	
-				else
-				{
-					$id('priceesdiv').style.display = "none";
-					$id('priceesdiv1').style.display = "block";
-				}	
 				
 				waiting=false;
 			}
@@ -498,155 +475,15 @@
 				$id('flvolume').value = $id('ivol').innerHTML;				
 			}
 			
-			function re_cal_price()
+			function update_estimation()
 			{
-				//$id('met').value = document.querySelector('input[name="rate"]:checked').value;
-				//$id('cur').value = $id('met').value;
-				//$id('len').value = $id('met').value;
-				
-				
-				if($('#priceesdiv').css('display') == 'block')
-				{
-					ppp = re_real_price(document.querySelector('input[name="material"]:checked').value,$id('pden').value,$id('suview').value) ;
-					$id('esprice').value =  ppp;
-				}
-				else if($('#priceesdiv1').css('display') == 'block')
-				{
-					ppp = re_real_price(document.querySelector('input[name="material"]:checked').value,$id('pden1').value,$id('suview').value) ;
-					$id('esprice1').innerHTML = ppp;	
-				}
-					
-					
-				//$id('esprice1').innerHTML = ppp;
+				var price = calculate_price();
+				var shipping = calculate_shipping();
+				var total = price + shipping;
+				$id('iunitprice').innerHTML = price.toFixed(2) + ' PLN';
+				$id('ishippingcost').innerHTML = shipping.toFixed(2) + ' PLN';
+				$id('itotalcost').innerHTML = total.toFixed(2) + ' PLN';
 			}
-			
-			function re_cal_price1()
-			{
-				//$id('met').value = document.querySelector('input[name="rate"]:checked').value;
-				//$id('cur').value = $id('met').value;
-				//$id('len').value = $id('met').value;
-				
-				
-				//$id('esprice').value =  ppp;
-				
-			}
-			
-			function re_real_price(me,cu,le)
-			{
-				var vl = vol.toFixed(2);
-				
-				switch(me){
-					case 'FDM' : 
-							if( le == 3)
-							{
-								fromp = 15* eval(vl);
-								topp   = 35* eval(vl);																						
-							}
-							else if( le == 1)
-							{
-								fromp = (15* eval(vl))/1000;
-								topp   = (35* eval(vl))/1000;
-							}
-							else if(le == 2)
-							{
-								fromp = 15* eval(vl) * 16.387;
-								topp   = 35* eval(vl)* 16.387;
-							}
-							
-								
-							if(cu == 'INR')
-									return 'INR '+ Math.round(fromp.toFixed(2)) + ' to INR ' +	Math.round(topp.toFixed(2));
-								else if(cu == 'USD')
-								{
-									fromp1 = eval(fromp/66);
-									topp1   = eval(topp/66);
-								
-									return 'USD '+ Math.round(fromp1.toFixed(2)) + ' to USD ' +	Math.round(topp1.toFixed(2));	
-								}
-								else if(cu == 'EUR')
-								{
-									fromp2 = eval(fromp/74);
-									topp2   = eval(topp/74);
-								
-									return 'EUR '+ Math.round(fromp2.toFixed(2)) + ' to EUR ' +	Math.round(topp2.toFixed(2));	
-								}											
-								
-						break;
-					case 'SLA' : 
-							
-							if( le == 3)
-							{
-								fromp = 120* eval(vl);
-								topp   = 240* eval(vl);																						
-							}
-							else if( le == 1)
-							{
-								fromp = (120* eval(vl))/1000;
-								topp   = (240* eval(vl))/1000;
-							}
-							else if(le == 2)
-							{
-								fromp = 120* eval(vl) * 16.387;
-								topp   = 240* eval(vl)* 16.387;
-							}
-							
-								
-							if(cu == 'INR')
-									return 'INR '+ Math.round(fromp.toFixed(2)) + ' to INR ' +	Math.round(topp.toFixed(2));
-								else if(cu == 'USD')
-								{
-									fromp1 = eval(fromp/66);
-									topp1   = eval(topp/66);
-								
-									return 'USD '+ Math.round(fromp1.toFixed(2)) + ' to USD ' +	Math.round(topp1.toFixed(2));	
-								}
-								else if(cu == 'EUR')
-								{
-									fromp2 = eval(fromp/74);
-									topp2   = eval(topp/74);
-								
-									return 'EUR '+ Math.round(fromp2.toFixed(2)) + ' to EUR ' +	Math.round(topp2.toFixed(2));	
-								}
-								
-						break;
-					case 'SLS' : 
-							if( le == 3)
-							{
-								fromp = 90* eval(vl);
-								topp   = 180* eval(vl);																						
-							}
-							else if( le == 1)
-							{
-								fromp = (90* eval(vl))/1000;
-								topp   = (180* eval(vl))/1000;
-							}
-							else if(le == 2)
-							{
-								fromp = 90* eval(vl) * 16.387;
-								topp   = 180* eval(vl)* 16.387;
-							}
-							
-								
-							if(cu == 'INR')
-									return 'INR '+ Math.round(fromp.toFixed(2)) + ' to INR ' +	Math.round(topp.toFixed(2));
-								else if(cu == 'USD')
-								{
-									fromp1 = eval(fromp/66);
-									topp1   = eval(topp/66);
-								
-									return 'USD '+ Math.round(fromp1.toFixed(2)) + ' to USD ' +	Math.round(topp1.toFixed(2));	
-								}
-								else if(cu == 'EUR')
-								{
-									fromp2 = eval(fromp/74);
-									topp2   = eval(topp/74);
-								
-									return 'EUR '+ Math.round(fromp2.toFixed(2)) + ' to EUR ' +	Math.round(topp2.toFixed(2));	
-								}
-						break;
-				}
-			}
-			
 	</script>
   </head>
   <body>
@@ -673,7 +510,7 @@
 					<div id="cjcproc" style="display:none;position:absolute;height:50px;width:350px;text-align:center;">
 						<span id="prt1" style="font:15px Arial;color:#343434;">processing...</span><br>
 					</div>				
-					<div id="cjc" onMouseDown="$id('rrotate2').checked=true;controls.autoRotate=false;" style="display:none;position:absolute;left:0px;top:0px;margin:0 auto;text-align:center;"></div>
+					<div id="cjc" style="display:none;position:absolute;left:0px;top:0px;margin:0 auto;text-align:center;"></div>
 				 </div>
             <div style="clear:both"></div>
             <div style="width:100%; margin-top:10px">
@@ -696,7 +533,7 @@
 		<li>size: <span id="isize"></span></li>
 		<li>volume: <span id="ivol"></span></li>
 		<li>surface area: <span id="iarea"></span></li>
-		<li>units:
+		<li style="display:none">units:
 		<select id="suview" name="suview" onChange="set_view_units(this.value); recalc_units();">
 			<option value="1">mm</option>
 			<option value="2">in</option>
@@ -735,108 +572,54 @@
 		</li>
 	</ul>
 	</li>
-	<li><span class="subsec">material</span>
+	<li><span class="subsec">print settings</span>
 	<ul>
-		<li>
-		<input type="radio" name="material" value="PLA" onClick="re_cal_price()" checked>PLA
+		<li>material: 
+			<select name="rmaterial" id="rmaterial" onChange="update_estimation()">
+			<option value="PLA">PLA</option>
+			<option value="ABS">ABS</option>
+			<option value="PETG">PET-G</option>
+			<option value="nylon">nylon</option>
+			</select>
 		</li>
-		<li>
-		<input type="radio" name="material" value="ABS" onClick="re_cal_price()">ABS
+		<li>nozzle diameter: 
+			<select name="rnozzle" id="rnozzle" onChange="update_estimation()">
+			<option value="0.2">0.2 mm</option>
+			<option value="0.3">0.3 mm</option>
+			<option value="0.4">0.4 mm</option>
+			</select>
 		</li>
-		<li>
-		<input type="radio" name="material" value="nylon" onClick="re_cal_price()">nylon
+		<li>layer height: 
+			<select name="rlayer" id="rlayer" onChange="update_estimation()">
+			<option value="0.08">0.08 mm</option>
+			<option value="0.12">0.12 mm</option>
+			<option value="0.16">0.16 mm</option>
+			<option value="0.20">0.20 mm</option>
+			</select>
+		</li>
+		<li>infill: 
+			<select name="rinfill" id="rinfill" onChange="update_estimation()">
+			<option value="0.2">20%</option>
+			<option value="0.4">40%</option>
+			<option value="0.6">60%</option>
+			<option value="0.8">80%</option>
+			</select>
 		</li>
 	</ul>
 	</li>
+	<li><span class="subsec">price estimation</span>
+	<ul>
+		<li>unit price: <span id="iunitprice"></span></li>
+		<li>shipping: <span id="ishippingcost"></span></li>
+		<li>total cost: <span id="itotalcost"></span></li>
+	</ul>
+	</li>
 </ul>
-                
-                <div class="cinfo" id="priceesdiv" style="display:none">
-						<h3>Estimated  Price</h3>
-                        <table>
-                        	<tr>
-                            	<th>Currency</th>
-                            	<td style="width:50%">
-                                	<select name="pden" id="pden" onChange="re_cal_price()">
-                                    	<option value="INR">INR</option>
-                                        <option value="USD">USD</option>
-                                        <option value="EUR">EUR</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <input type="hidden" value="" id="esprice"  name="esprice"/>
-                         <!--   <tr>
-                            	<th>Estimated  Price:</th>
-                                <td id="esprice" style="color:#FF0000"></td>
-                            </tr>-->
-                            <tr>
-                            	<th>Name:</th>
-                                <td><input type="text" id="name" name="name" class="inputbg" style="padding:6px"  onfocus="if (this.value == 'Your Name') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Your Name';}" value="Your Name" /></td>
-                            </tr>
-                            <tr>
-                            	<th>Email:</th>
-                                <td><input type="text" id="email" name="email" class="inputbg" style="padding:6px"   onfocus="if (this.value == 'Your Email') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Your Email';}" value="Your Email" /></td>
-                            </tr>
-                            <tr>
-                            	<th>Mobile:</th>
-                                <td><input type="text" id="mobile" name="mobile" class="inputbg" style="padding:6px"   onfocus="if (this.value == 'Your Mobile') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Your Mobile';}" value="Your Mobile" /></td>
-                            </tr>
-                            <tr>
-                            	
-                                <td colspan="2"><input type="button"  id="btn" style="padding:6px"  onclick="sendestimate();"  value="Send Price Estimation" /></td>
-                            </tr>
-                            
-                        </table>
-						
-				</div>
-                
-                <div class="cinfo" id="priceesdiv1" style="display:none">
-						<span style="color:red; font-size:20px">Estimated  Price</span>
-                        <table>
-                        	<tr>
-                            	<th>Currency</th>
-                            	<td style="width:50%">
-                                	<select name="pden1" id="pden1" onChange="re_cal_price()">
-                                    	<option value="INR">INR</option>
-                                        <option value="USD">USD</option>
-                                        <option value="EUR">EUR</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            
-                            <tr>
-                            	<th>Estimated  Price:</th>
-                                <td id="esprice1" style="color:#FF0000"></td>
-                            </tr>
-                            
-                            
-                        </table>
-						
-				</div>
-                <!--<div class="cinfo">
-						<h2>Place order</h2>
-                        <table>
-                        	<tr>
-                            	<th>upload file</th>
-                            	<td>
-                                	<input type="file" name="mfile" id="mfile">
-                                </td>
-                            </tr>
-                            <tr>
-                            	<td colspan="2" style="text-align:center;"><input type="submit" value="Place Order" style="padding:10px; width:90%"></td>
-                            </tr>
-                        </table>
-						
-				</div>-->
-                
-                
-			</div>
-						
-						
-					</div>
-			
-		</div><!-- Newsletter Signup END -->
-	</div>
-	</form>
+</div>
+</div>
+</div><!-- Newsletter Signup END -->
+</div>
+</form>
 
 		<script>
 			var scene = new THREE.Scene();
