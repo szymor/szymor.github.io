@@ -52,16 +52,23 @@ function calculate_price() {
 	var hour_price = 6;
 	var nozzle = parseFloat($id("rnozzle").value);
 	var layer = parseFloat($id("rlayer").value);
-	var speed = 100; // mm/s
+	var speed = 50; // mm/s
 	var infill = parseFloat($id("rinfill").value);
-	var shell = area * nozzle * 2;
+	var shell = area * nozzle * 3;
 	var invol = (vol - shell) * infill;
 	if (invol < 0)
 		invol = 0;
-	var real_vol = shell + invol;
+
+	var btm_area = xsize * ysize;
+	var topbot_lyr_n = 7;
+
+	var solid_tb_vol = topbot_lyr_n * 2 * layer * btm_area;
+	var real_vol = shell + invol + solid_tb_vol;
+
 	var filam_cost = material_price * density * real_vol / 1000000;
 	var time_cost = hour_price * real_vol / (nozzle * layer * speed) / 3600;
-	if (time_cost < 10)
+
+	if (time_cost < 6)
 		time_cost += 5;
 	return filam_cost + time_cost;
 }

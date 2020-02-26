@@ -480,6 +480,7 @@
 				var price = calculate_price();
 				var shipping = calculate_shipping();
 				var total = price + shipping;
+
 				$id('iunitprice').innerHTML = price.toFixed(2) + ' PLN';
 				$id('ishippingcost').innerHTML = shipping.toFixed(2) + ' PLN';
 				$id('itotalcost').innerHTML = total.toFixed(2) + ' PLN';
@@ -586,22 +587,25 @@
 			<select name="rnozzle" id="rnozzle" onChange="update_estimation()">
 			<option value="0.2">0.2 mm</option>
 			<option value="0.3">0.3 mm</option>
-			<option value="0.4">0.4 mm</option>
+			<option value="0.5">0.5 mm</option>
+			<option value="0.7">0.7 mm</option>
 			</select>
 		</li>
 		<li>layer height: 
 			<select name="rlayer" id="rlayer" onChange="update_estimation()">
-			<option value="0.08">0.08 mm</option>
-			<option value="0.12">0.12 mm</option>
-			<option value="0.16">0.16 mm</option>
+			<option value="0.07">0.07 mm</option>
+			<option value="0.10">0.10 mm</option>
+			<option value="0.15">0.15 mm</option>
 			<option value="0.20">0.20 mm</option>
+			<option value="0.25">0.25 mm</option>
+			<option value="0.30">0.30 mm</option>
+			<option value="0.35">0.35 mm</option>
 			</select>
 		</li>
 		<li>infill: 
 			<select name="rinfill" id="rinfill" onChange="update_estimation()">
-			<option value="0.2">20%</option>
-			<option value="0.4">40%</option>
-			<option value="0.6">60%</option>
+			<option value="0.1">10%</option>
+			<option value="0.25">25%</option>
 			<option value="0.8">80%</option>
 			</select>
 		</li>
