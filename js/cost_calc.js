@@ -30,7 +30,7 @@ function calculate_shipping() {
 
 function calculate_price() {
 	var material_price = 300;
-	var density = 2;
+	var density = 3;
 	switch ($id("rmaterial").value) {
 		case 'PLA':
 			material_price = 50;
@@ -45,7 +45,7 @@ function calculate_price() {
 			density = 1.4;
 			break;
 		case 'nylon':
-			material_price = 200;
+			material_price = 250;
 			density = 1.2;
 			break;
 	}
