@@ -12,7 +12,7 @@ function adjustFooter() {
 function showContent(num) {
 	var content = document.querySelectorAll('[id*="content-"]');
 	
-	content.forEach.call(content, function(elem) {
+	Array.prototype.forEach.call(content, function(elem) {
 		elem.style.display = (elem.id == "content-"+num) ? "inline-block" : "none";
 	});
 }
@@ -26,9 +26,11 @@ window.onload = function() {
 	showContent(defaultContent);
 	
 	// Enable menu contents by link
-	menuLinks.forEach(elem => elem.addEventListener("click", event => {
-		showContent(event.target.getAttribute("data-target"));
-	}));
+	Array.prototype.forEach.call(menuLinks, function(elem){
+		elem.addEventListener("click", function(event) {
+			showContent(event.target.getAttribute("data-target"));
+		});
+	});
 };
 
 // On resize
