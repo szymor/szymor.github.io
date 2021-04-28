@@ -1,21 +1,18 @@
 /* Common */
-body
-{
+body {
 	background-color: rgb(32, 32, 32);
 }
-div
-{
+div {
 	font-family: sans-serif;
 	color: lavender;
 }
-ul
-{
+ul {
 	list-style-type: none;
 	padding-left: 1em;
 }
+/* Common */
 /* Layout */
-a
-{
+a, a:visited, a:hover, a:active, a:focus {
 	color: firebrick;
 	text-decoration: none;
 	padding-left: 0em;
@@ -23,15 +20,13 @@ a
 	display: inline-block;
 	cursor: pointer;
 }
-a:hover
-{
+a:hover {
 	color: red;
 	text-decoration: none;
 	display: inline-block;
 	cursor: pointer;
 }
-a:hover.mlink
-{
+a:hover.mlink {
 	padding-left: 0.5em;
 	transition-duration: 0.5s;
 }
@@ -40,31 +35,26 @@ a img
 	border: solid 2px firebrick;
 	transition-duration: 0.5s;
 }
-a:hover img
-{
+a:hover img {
 	border: solid 2px red;
 	transition-duration: 0.5s;
 }
-#header
-{
+#header {
 	left: 40px;
 	position: fixed;
 	top: 10px;
 }
-#footer
-{
+#footer {
 	left: 40px;
 	position: fixed;
 	bottom: 10px;
 }
-#menu
-{
+#menu {
 	top: 40px;
 	width: 280px;
 	position: fixed;
 }
-#content
-{
+#content {
 	top: 0px;
 	left: 280px;
 	margin-right: 2em;
@@ -72,3 +62,11 @@ a:hover img
 	text-align: justify;
 	text-justify: inter-word;
 }
+div[id*="content-"] {
+	display: none;
+}
+#footer span {
+	display:inline-block;
+	transform:rotate(180deg);
+}
+/* Layout */

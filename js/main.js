@@ -1,21 +1,28 @@
+// Adjust footer
 function adjustFooter() {
-	footer = document.getElementById("footer");
-	menu = document.getElementById("menu");
-	frect = footer.getBoundingClientRect();
-	mrect = menu.getBoundingClientRect();
-	if (mrect.bottom > frect.top)
-		footer.style.visibility = "hidden";
-	else
-		footer.style.visibility = "visible";
+	var footer = document.getElementById("footer");
+	var menu = document.getElementById("menu");
+	var frect = footer.getBoundingClientRect();
+	var mrect = menu.getBoundingClientRect();
+	
+	footer.style.visibility = (mrect.bottom > frect.top) ? "hidden" : "visible";
 }
+
+// Show content
 function showContent(num) {
-	for (i = 0; i < 100; ++i) {
-		content = document.getElementById("content" + i);
-		if (content) {
-			if (i == num)
-				content.style.display = "inline-block";
-			else
-				content.style.display = "none";
-		}
-	}
+	var content = document.querySelectorAll('[id*="content-"]');
+	
+	Array.prototype.forEach.call(content, function(elem){
+		elem.style.display = (elem.id == "content-"+num) ? "inline-block" : "none";
+	});
 }
+
+// On load
+window.onload = function() {
+	showContent(90);
+};
+
+// On resize
+window.onresize = function() {
+	adjustFooter();
+};

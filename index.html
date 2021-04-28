@@ -1,215 +1,261 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>vmsth's homepage</title>
-    <meta content="">
-	<meta charset="utf-8">
+<html lang="en-US">
+<head>
+	<title>vmsth's homepage</title>
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta name="description" content="This site is yet another project of mine in search of a perfect form.">
+	<meta name="keywords" content="3D printing, anime and manga, games,software tools, electronics">
+	<meta name="author" content="vmsth's">
+	<!-- Stylesheet -->
 	<link rel="stylesheet" href="css/main.css">
-  </head>
-  <body onresize="adjustFooter()">
-  <div id="header">
-    vmsth's homepage
-  </div>
-  <div id="footer">
-  <span style="display:inline-block;transform:rotate(180deg);">&copy;</span> 2020-2021
-  </div>
-  <div id="menu">
-  <ul>
-    <li>3D printing
-    <ul>
-      <li><a class="mlink" onclick="showContent(10)">models</a></li>
-      <li><a class="mlink" onclick="showContent(11)">print on demand</a></li>
-    </ul>
-    </li>
-    <li>anime and manga
-    <ul>
-      <li><a class="mlink" onclick="showContent(20)">my favourites</a></li>
-      <li><a class="mlink" onclick="showContent(21)">related work</a></li>
-    </ul>
-    </li>
-    <li>games
-    <ul>
-      <li><a class="mlink" onclick="showContent(32)">gomoku</a></li>
-      <li><a class="mlink" onclick="showContent(37)">ictoonmo</a></li>
-      <li><a class="mlink" onclick="showContent(33)">yatka</a></li>
-      <li><a class="mlink" onclick="showContent(38)">retroguru ports</a></li>
-      <li><a class="mlink" onclick="showContent(34)">ports of 3rd party games</a></li>
-      <li><a class="mlink" onclick="showContent(35)">related work</a></li>
-    </ul>
-    </li>
-    <li>software tools
-    <ul>
-      <li><a class="mlink" onclick="showContent(30)">calculator</a></li>
-      <li><a class="mlink" onclick="showContent(31)">capedit2</a></li>
-      <li><a class="mlink" onclick="showContent(39)">tiny opk viewer</a></li>
-    </ul>
-    </li>
-    <li>electronics
-    <ul>
-      <li><a class="mlink" onclick="showContent(40)">12 diode clock</a></li>
-      <li><a class="mlink" onclick="showContent(41)">binary clock</a></li>
-      <li><a class="mlink" onclick="showContent(42)">USB-controlled SMPS</a></li>
-      <li><a class="mlink" onclick="showContent(49)">related work</a></li>
-    </ul>
-    </li>
-	<li>other
-	<ul>
-	  <li><a class="mlink" onclick="showContent(90)">about</a></li>
-	</ul>
-	</li>
-  </ul>
-  </div>
-  <div id="content">
-  <div id="content10">
-    <h3>models</h3>
-    <p>You can find some models designed by me at <a href="https://www.thingiverse.com/vamastah/designs" target="_blank">Thingiverse</a>.</p>
-  </div>
-  <div id="content11">
-    <h3>print on demand</h3>
-	<p>We offer 3D printing services using <a href="https://en.wikipedia.org/wiki/Fused_filament_fabrication" target="_blank">FDM technology</a>. Check out our <a href="pod3d.html">pricing calculator</a> for cost estimation. By default we do not apply any post processing techniques to your model. Reach out for us if you are interested in tailor-made and sophisticated services.</p>
-    <p>Shipping to Poland only. Prices are estimates and are subject to change. We accept Bitcoin.</p>
-	<p>Maximum print size is 220 mm x 220 mm x 230 mm.</p>
-	<p>Contact information available in the about section.</p>
-  </div>
-  <div id="content20">
-  <h3>my favourites</h3>
-  <ul>
-  <li>Afro Samurai (anime)</li>
-  <li>Berserk (anime from 1997 and manga)</li>
-  <li>Claymore (anime and manga)</li>
-  <li>Cowboy Bebop (anime)</li>
-  <li>Dororo (anime from 1969 and manga)</li>
-  <li>FLCL (anime)</li>
-  <li>Great Teacher Onizuka (anime)</li>
-  <li>Hellsing (anime)</li>
-  <li>Hokuto no Ken (anime)</li>
-  <li>Hyakko (anime)</li>
-  <li>JoJo's Bizarre Adventure (OVA by A.P.P.P.)</li>
-  <li>Jūni Kokki (anime)</li>
-  <li>Nana (anime)</li>
-  <li>Neon Genesis Evangelion (anime)</li>
-  <li>Oyasumi Punpun (manga)</li>
-  <li>Sailor Moon (anime)</li>
-  <li>Serial Experiments Lain (anime)</li>
-  <li>Shinryaku! Ika Musume (anime)</li>
-  <li>Steins;Gate (anime)</li>
-  <li>Umibe no Onnanoko (manga)</li>
-  <li>Vision of Escaflowne (anime)</li>
-  <li>Watashi ga motenai no wa dō kangaetemo omaera ga warui! (abbr. WataMote, anime and manga)</li>
-  </ul>
-  <p>By the way, I would really love to thank authors of Nyaa Torrents. You do a great job!</p>
-  </div>
-  <div id="content21">
-  <h3>related work</h3>
-  <p>Berserk - see models, yatka</p>
-  <p>Claymore - see models</p>
-  <p>FLCL Progressive - <a href="https://github.com/szymor/misc/blob/master/subs/flcl-progressive.ass" target="_blank">subtitles</a> for BDRip by SweetSub and VCB-Studio</p>
-  <p>FLCL Alternative - <a href="https://github.com/szymor/misc/blob/master/subs/flcl-alternative.ass" target="_blank">subtitles</a> for BDRip by SweetSub and VCB-Studio</p>
-  </div>
-  <div id="content30">
-  <h3>calculator</h3>
-  <p>A simple calculator made with Bittboy in mind, ported to RetroFW later on. It should not be much hassle to port it to other platforms though.</p>
-  <p>The source code and executables can be found on <a href="https://github.com/szymor/bittboy-calc" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content31">
-  <h3>capedit2</h3>
-  <p>A level editor for <a href="http://napko.fi/games/capman/" target="_blank">Capman</a>, a Pac-Man clone with some interesting features (e.g. guns). Hopefully, it is more user-friendly than the standard level editor delivered with the game itself. Feel free to do with it whatever you want, I do not maintain it anymore.</p>
-  <p><a href="https://github.com/szymor/misc/blob/master/capman-level-format.txt" target="_blank">Here</a> you can find description of Capman level format. Some of the levels created in capedit2 can be downloaded from <a href="https://github.com/szymor/misc/tree/master/capman-levels" target="_blank">here</a>.</p>
-  <p>The source code and executables can be found on <a href="https://github.com/szymor/capedit2" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content32">
-  <h3>gomoku</h3>
-  <p>My implementation of <a href="https://en.wikipedia.org/wiki/Gomoku" target="_blank">Gomoku</a>, also known as Five in a Row. Feel free to do with it whatever you want, I do not maintain it anymore.</p>
-  <p>The source code and executables can be found on <a href="https://github.com/szymor/gomoku" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content37">
-  <h3>ictoonmo</h3>
-  <p>Started as a clone of Icy Tower, now it is a platform game with unique features. It offers pure gameplay, no fancy graphics or twinkling stars. Available on RetroFW-based devices and modern web browsers. Give it a try :)</p>
-  <p>To be honest, the game needs sprites to reach wider audience. If you are a 2D artist and would like to help me in this project (for free), please contact me.</p>
-  <p><a href="https://github.com/szymor/ictoonmo" target="_blank">GitHub</a></p>
-  <p><a href="ictoonmo/index.html">Play in the web browser!</a></p>
-  </div>
-  <div id="content33">
-  <h3>yatka</h3>
-  <p>My implementation of Tetris, started as a 2-day project during a summer break. After a few years the legacy code became foundation of a new Tetris implementation for Bittboy and other handheld consoles. Development is <strike>on hiatus</strike> going on steadily.</p>
-  <p>The source code and executables can be found on <a href="https://github.com/szymor/yatka" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content38">
-  <h3>retroguru ports</h3>
-  <p>The following games have been ported by me for Bittboy/PocketGo as a part of <a href="https://www.retroguru.com/" target="_blank">Retroguru</a> initiative.</p>
-  <p><a href="https://www.retroguru.com/hermes/" target="_blank"><b>Hermes</b></a></p>
-  <p><a href="https://www.sqrxz.de/sqrxz-2/" target="_blank"><b>Sqrxz 2</b></a></p>
-  <p><a href="https://www.sqrxz.de/sqrxz-3/" target="_blank"><b>Sqrxz 3</b></a></p>
-  <p><a href="https://www.sqrxz.de/sqrxz-4/" target="_blank"><b>Sqrxz 4</b></a></p>
-  </div>
-  <div id="content34">
-  <h3>ports of 3rd party games</h3>
-  <p>The following games have been ported by me for different platforms. For binaries, see relevant Releases section on GitHub.</p>
-  <p>Bittboy ports should run on any Bittboy-compatible hardware, i.e. Bittboy itself, PocketGo and clones, such as PowKiddy V90 or PowKiddy Q90. Some PocketGo ports may be incompatible with Bittboy due to additional buttons (left and right shoulders) in use. RetroFW ports are tested on LDK Landscape, but should run on any compatible consoles as well, i.e. square LDK, RG-300, RS-97 and other devices based on JZ4760 or JZ4760B SoC.</p>
-  <p><a href="https://github.com/szymor/FleshChasmer" target="_blank"><b>FleshChasmer</b></a> - PocketGo, RetroFW.</p>
-  <p><a href="https://github.com/szymor/haunted" target="_blank"><b>Haunted House</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/heroes-tron" target="_blank"><b title="Heroes Enjoy Riding Over Empty Slabs">H.E.R.O.E.S.</b></a> - Bittboy (buggy!).</p>
-  <p><a href="https://github.com/szymor/HomingFever" target="_blank"><b>Homing Fever</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/hydracastlelabyrinth" target="_blank"><b>Hydra Castle Labyrinth</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/just4qix" target="_blank"><b>Just4qix</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/abbayedesmorts-gpl" target="_blank"><b>l'Abbaye des Morts</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/MineSweeper" target="_blank"><b>Minesweeper</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/methane-sdl" target="_blank"><b>Super Methane Brothers</b></a> - Bittboy, RetroFW.</p>
-  <p><a href="https://github.com/szymor/c-paranoia" target="_blank"><b>Paranoia</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/stransball2" target="_blank"><b>Super Transball 2</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/shisen-seki" target="_blank"><b>Shisen-Seki</b></a> - Bittboy, RetroFW.</p>
-  <p><a href="https://github.com/szymor/Shifty-Pills" target="_blank"><b>Shifty Pills</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/Spartak-Chess" target="_blank"><b>Spartak Chess</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/spout" target="_blank"><b>Spout</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/Wizznic" target="_blank"><b>Wizznic</b></a> - Bittboy.</p>
-  <p><a href="https://github.com/szymor/Worship-Vector" target="_blank"><b>Worship Vector</b></a> - PocketGo.</p>
-  </div>
-  <div id="content35">
-  <h3>related work</h3>
-  <h4>AI scripts for Little Fighter 2</h4>
-  <p>If you do not know what Little Fighter 2 is, you can find it out <a href="http://lf2.net/" target="_blank">here</a>. If you are familiar with LF2, but you do not know anything about AI scripting, take a look <a href="https://www.lf-empire.de/forum/showthread.php?tid=7927" target="_blank">here</a> or <a href="https://github.com/seikosantana/lf2-ai-scriptengine" target="_blank">here</a>.</p>
-  <p>A few years ago I created some AI scripts for unofficial custom-made characters. Maybe you will find them useful.</p>
-  <p>YinYin's Aeron - <a href="https://www.lf-empire.de/forum/showthread.php?tid=115" target="_blank">thread</a> and <a href="https://github.com/szymor/misc/blob/master/lf2-ai/aeron/ai.as" target="_blank">script</a>.</p>
-  <p>YinYin and Siegvar's Frozen - <a href="https://www.lf-empire.de/forum/showthread.php?tid=6961" target="_blank">thread</a> and <a href="https://github.com/szymor/misc/blob/master/lf2-ai/frozen/ai.as" target="_blank">script</a>.</p>
-  <p>YinYin's Silva - <a href="https://www.lf-empire.de/lfe-fileplanet/characters/394-silva" target="_blank">download link</a> and <a href="https://github.com/szymor/misc/blob/master/lf2-ai/silva/ai.as" target="_blank">script</a>.</p>
-  <br><h4>other little things</h4>
-  <p>Things too little to give them a separate section, but too noticeable to forget about them.</p>
-  <p>texture list and map formats of <a href="http://recreationalwarfare.atspace.com/index_willem.html" target="_blank">RecWar</a> - <a href="https://github.com/szymor/misc/blob/master/recwar-texture-map-formats.txt" target="_blank">click!</a></p>
-  <p>music files extracted from PuzzPower 2.0 - <a href="https://github.com/szymor/misc/tree/master/puzztracks" target="_blank">click!</a></p>
-  </div>
-  <div id="content39">
-  <h3>tiny opk viewer</h3>
-  <p>A simple tool for viewing OpenDingux and RetroFW packages. It supports opening OPKs from both CLI and GUI. Windows users should be especially delighted as there are few programs of its kind. More information and source code are available on <a href="https://github.com/szymor/opkview" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content40">
-  <h3>12 diode clock</h3>
-  <p>A 12 diode clock, in which each diode represents one digit on the clock face (just like in any analog clock). More information, schematics and source code are available on <a href="https://github.com/szymor/clock12" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content41">
-  <h3>binary clock</h3>
-  <p>A <a href="https://en.wikipedia.org/wiki/Binary_clock" target="_blank">binary clock</a> with an infrared receiver and a thermometer. More information, schematics and source code are available on <a href="https://github.com/szymor/binclock" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content42">
-  <h3>USB-controlled SMPS</h3>
-  <p>A <a href="https://en.wikipedia.org/wiki/Switched-mode_power_supply" target="_blank">switched-mode power supply</a> with a <a href="https://en.wikipedia.org/wiki/Forward_converter" target="_blank">forward converter</a>. Output voltage and current limits are possible to control via USB and a knob on the front panel. The device does not need any non-standard drivers as it uses USB HID protocol. More information, schematics and source code of firmware and host software are available on <a href="https://github.com/szymor/usb-smps" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content49">
-  <h3>related work</h3>
-  <h4>publications</h4>
-  <p><i>Build your own controller for Pegasus (NES clone)!</i> - an article in <a href="https://pagedout.institute/" target="_blank">Paged Out!</a> #1. The full source code of the related project (never finished) can be found on <a href="https://github.com/szymor/wirelessness" target="_blank">GitHub</a>.</p>
-  </div>
-  <div id="content90">
-  <h3>about</h3>
-  <p>This site is yet another project of mine in search of a perfect form.</p>
-  <p>If you like things I create, consider <a href="https://paypal.me/szymor" target="_blank">PayPal donation</a> or Bitcoin donation at bc1qxwzvk4qs7geleauw33wylyumf26p8hk677rlla. Getting tips motivates me to spend more time on porting and game development.</p>
-  <p>Contact (e-mail): szymorawski at pm dot me</p>
-  </div>
-  </div>
-	  <!-- Scripts -->
-	  <script async defer data-domain="szymor.github.io" src="https://plausible.kerrex.pl/js/plausible.js"></script>
-	  <script src="js/main.js"></script>
-	  <script type="text/javascript">
-		showContent(90);
-	  </script>
-  </body>
+</head>
+<body>
+	<!-- Header -->
+	<div id="header">
+		vmsth's homepage
+	</div>
+	<!-- Header (End) -->
+	<!-- Menu -->
+	<div id="menu">
+		<ul>
+			<li>3D printing
+				<ul>
+					<li><a class="mlink" onclick="showContent(10)">models</a></li>
+					<li><a class="mlink" onclick="showContent(11)">print on demand</a></li>
+				</ul>
+			</li>
+			<li>anime and manga
+				<ul>
+					<li><a class="mlink" onclick="showContent(20)">my favourites</a></li>
+					<li><a class="mlink" onclick="showContent(21)">related work</a></li>
+				</ul>
+			</li>
+			<li>games
+				<ul>
+					<li><a class="mlink" onclick="showContent(32)">gomoku</a></li>
+					<li><a class="mlink" onclick="showContent(37)">ictoonmo</a></li>
+					<li><a class="mlink" onclick="showContent(33)">yatka</a></li>
+					<li><a class="mlink" onclick="showContent(38)">retroguru ports</a></li>
+					<li><a class="mlink" onclick="showContent(34)">ports of 3rd party games</a></li>
+					<li><a class="mlink" onclick="showContent(35)">related work</a></li>
+				</ul>
+			</li>
+			<li>software tools
+				<ul>
+					<li><a class="mlink" onclick="showContent(30)">calculator</a></li>
+					<li><a class="mlink" onclick="showContent(31)">capedit2</a></li>
+					<li><a class="mlink" onclick="showContent(39)">tiny opk viewer</a></li>
+				</ul>
+			</li>
+			<li>electronics
+				<ul>
+					<li><a class="mlink" onclick="showContent(40)">12 diode clock</a></li>
+					<li><a class="mlink" onclick="showContent(41)">binary clock</a></li>
+					<li><a class="mlink" onclick="showContent(42)">USB-controlled SMPS</a></li>
+					<li><a class="mlink" onclick="showContent(49)">related work</a></li>
+				</ul>
+			</li>
+			<li>other
+				<ul>
+					<li><a class="mlink" onclick="showContent(90)">about</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<!-- Menu (End) -->
+	<!-- Content -->
+	<div id="content">
+		<!-- Content 10 -->
+		<div id="content-10">
+			<h3>models</h3>
+			<p>You can find some models designed by me at <a href="https://www.thingiverse.com/vamastah/designs" target="_blank">Thingiverse</a>.</p>
+		</div>
+		<!-- Content 10 (End) -->
+		<!-- Content 11 -->
+		<div id="content-11">
+			<h3>print on demand</h3>
+			<p>We offer 3D printing services using <a href="https://en.wikipedia.org/wiki/Fused_filament_fabrication" target="_blank">FDM technology</a>. Check out our <a href="pod3d.html">pricing calculator</a> for cost estimation. By default we do not apply any post processing techniques to your model. Reach out for us if you are interested in tailor-made and sophisticated services.</p>
+			<p>Shipping to Poland only. Prices are estimates and are subject to change. We accept Bitcoin.</p>
+			<p>Maximum print size is 220 mm x 220 mm x 230 mm.</p>
+			<p>Contact information available in the about section.</p>
+		</div>
+		<!-- Content 11 (End) -->
+		<!-- Content 20  -->
+		<div id="content-20">
+			<h3>my favourites</h3>
+			<ul>
+				<li>Afro Samurai (anime)</li>
+				<li>Berserk (anime from 1997 and manga)</li>
+				<li>Claymore (anime and manga)</li>
+				<li>Cowboy Bebop (anime)</li>
+				<li>Dororo (anime from 1969 and manga)</li>
+				<li>FLCL (anime)</li>
+				<li>Great Teacher Onizuka (anime)</li>
+				<li>Hellsing (anime)</li>
+				<li>Hokuto no Ken (anime)</li>
+				<li>Hyakko (anime)</li>
+				<li>JoJo's Bizarre Adventure (OVA by A.P.P.P.)</li>
+				<li>Jūni Kokki (anime)</li>
+				<li>Nana (anime)</li>
+				<li>Neon Genesis Evangelion (anime)</li>
+				<li>Oyasumi Punpun (manga)</li>
+				<li>Sailor Moon (anime)</li>
+				<li>Serial Experiments Lain (anime)</li>
+				<li>Shinryaku! Ika Musume (anime)</li>
+				<li>Steins;Gate (anime)</li>
+				<li>Umibe no Onnanoko (manga)</li>
+				<li>Vision of Escaflowne (anime)</li>
+				<li>Watashi ga motenai no wa dō kangaetemo omaera ga warui! (abbr. WataMote, anime and manga)</li>
+			</ul>
+			<p>By the way, I would really love to thank authors of Nyaa Torrents. You do a great job!</p>
+		</div>
+		<!-- Content 20 (End) -->
+		<!-- Content 21 -->
+		<div id="content-21">
+			<h3>related work</h3>
+			<p>Berserk - see models, yatka</p>
+			<p>Claymore - see models</p>
+			<p>FLCL Progressive - <a href="https://github.com/szymor/misc/blob/master/subs/flcl-progressive.ass" target="_blank">subtitles</a> for BDRip by SweetSub and VCB-Studio</p>
+			<p>FLCL Alternative - <a href="https://github.com/szymor/misc/blob/master/subs/flcl-alternative.ass" target="_blank">subtitles</a> for BDRip by SweetSub and VCB-Studio</p>
+		</div>
+		<!-- Content 21 (End) -->
+		<!-- Content 30 -->
+		<div id="content-30">
+			<h3>calculator</h3>
+			<p>A simple calculator made with Bittboy in mind, ported to RetroFW later on. It should not be much hassle to port it to other platforms though.</p>
+			<p>The source code and executables can be found on <a href="https://github.com/szymor/bittboy-calc" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 30 (End) -->
+		<!-- Content 31 -->
+		<div id="content-31">
+			<h3>capedit2</h3>
+			<p>A level editor for <a href="http://napko.fi/games/capman/" target="_blank">Capman</a>, a Pac-Man clone with some interesting features (e.g. guns). Hopefully, it is more user-friendly than the standard level editor delivered with the game itself. Feel free to do with it whatever you want, I do not maintain it anymore.</p>
+			<p><a href="https://github.com/szymor/misc/blob/master/capman-level-format.txt" target="_blank">Here</a> you can find description of Capman level format. Some of the levels created in capedit2 can be downloaded from <a href="https://github.com/szymor/misc/tree/master/capman-levels" target="_blank">here</a>.</p>
+			<p>The source code and executables can be found on <a href="https://github.com/szymor/capedit2" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 31 (End) -->
+		<!-- Content 32 -->
+		<div id="content-32">
+			<h3>gomoku</h3>
+			<p>My implementation of <a href="https://en.wikipedia.org/wiki/Gomoku" target="_blank">Gomoku</a>, also known as Five in a Row. Feel free to do with it whatever you want, I do not maintain it anymore.</p>
+			<p>The source code and executables can be found on <a href="https://github.com/szymor/gomoku" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 32 (End) -->
+		<!-- Content 37 -->
+		<div id="content-37">
+			<h3>ictoonmo</h3>
+			<p>Started as a clone of Icy Tower, now it is a platform game with unique features. It offers pure gameplay, no fancy graphics or twinkling stars. Available on RetroFW-based devices and modern web browsers. Give it a try :)</p>
+			<p>To be honest, the game needs sprites to reach wider audience. If you are a 2D artist and would like to help me in this project (for free), please contact me.</p>
+			<p><a href="https://github.com/szymor/ictoonmo" target="_blank">GitHub</a></p>
+			<p><a href="ictoonmo/index.html">Play in the web browser!</a></p>
+		</div>
+		<!-- Content 37 (End) -->
+		<!-- Content 33 -->
+		<div id="content-33">
+			<h3>yatka</h3>
+			<p>My implementation of Tetris, started as a 2-day project during a summer break. After a few years the legacy code became foundation of a new Tetris implementation for Bittboy and other handheld consoles. Development is <strike>on hiatus</strike> going on steadily.</p>
+			<p>The source code and executables can be found on <a href="https://github.com/szymor/yatka" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 33 (End) -->
+		<!-- Content 38 -->
+		<div id="content-38">
+			<h3>retroguru ports</h3>
+			<p>The following games have been ported by me for Bittboy/PocketGo as a part of <a href="https://www.retroguru.com/" target="_blank">Retroguru</a> initiative.</p>
+			<p><a href="https://www.retroguru.com/hermes/" target="_blank"><b>Hermes</b></a></p>
+			<p><a href="https://www.sqrxz.de/sqrxz-2/" target="_blank"><b>Sqrxz 2</b></a></p>
+			<p><a href="https://www.sqrxz.de/sqrxz-3/" target="_blank"><b>Sqrxz 3</b></a></p>
+			<p><a href="https://www.sqrxz.de/sqrxz-4/" target="_blank"><b>Sqrxz 4</b></a></p>
+		</div>
+		<!-- Content 38 (End) -->
+		<!-- Content 34 -->
+		<div id="content-34">
+			<h3>ports of 3rd party games</h3>
+			<p>The following games have been ported by me for different platforms. For binaries, see relevant Releases section on GitHub.</p>
+			<p>Bittboy ports should run on any Bittboy-compatible hardware, i.e. Bittboy itself, PocketGo and clones, such as PowKiddy V90 or PowKiddy Q90. Some PocketGo ports may be incompatible with Bittboy due to additional buttons (left and right shoulders) in use. RetroFW ports are tested on LDK Landscape, but should run on any compatible consoles as well, i.e. square LDK, RG-300, RS-97 and other devices based on JZ4760 or JZ4760B SoC.</p>
+			<p><a href="https://github.com/szymor/FleshChasmer" target="_blank"><b>FleshChasmer</b></a> - PocketGo, RetroFW.</p>
+			<p><a href="https://github.com/szymor/haunted" target="_blank"><b>Haunted House</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/heroes-tron" target="_blank"><b title="Heroes Enjoy Riding Over Empty Slabs">H.E.R.O.E.S.</b></a> - Bittboy (buggy!).</p>
+			<p><a href="https://github.com/szymor/HomingFever" target="_blank"><b>Homing Fever</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/hydracastlelabyrinth" target="_blank"><b>Hydra Castle Labyrinth</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/just4qix" target="_blank"><b>Just4qix</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/abbayedesmorts-gpl" target="_blank"><b>l'Abbaye des Morts</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/MineSweeper" target="_blank"><b>Minesweeper</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/methane-sdl" target="_blank"><b>Super Methane Brothers</b></a> - Bittboy, RetroFW.</p>
+			<p><a href="https://github.com/szymor/c-paranoia" target="_blank"><b>Paranoia</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/stransball2" target="_blank"><b>Super Transball 2</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/shisen-seki" target="_blank"><b>Shisen-Seki</b></a> - Bittboy, RetroFW.</p>
+			<p><a href="https://github.com/szymor/Shifty-Pills" target="_blank"><b>Shifty Pills</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/Spartak-Chess" target="_blank"><b>Spartak Chess</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/spout" target="_blank"><b>Spout</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/Wizznic" target="_blank"><b>Wizznic</b></a> - Bittboy.</p>
+			<p><a href="https://github.com/szymor/Worship-Vector" target="_blank"><b>Worship Vector</b></a> - PocketGo.</p>
+		</div>
+		<!-- Content 34 (End) -->
+		<!-- Content 35 -->
+		<div id="content-35">
+			<h3>related work</h3>
+			<h4>AI scripts for Little Fighter 2</h4>
+			<p>If you do not know what Little Fighter 2 is, you can find it out <a href="http://lf2.net/" target="_blank">here</a>. If you are familiar with LF2, but you do not know anything about AI scripting, take a look <a href="https://www.lf-empire.de/forum/showthread.php?tid=7927" target="_blank">here</a> or <a href="https://github.com/seikosantana/lf2-ai-scriptengine" target="_blank">here</a>.</p>
+			<p>A few years ago I created some AI scripts for unofficial custom-made characters. Maybe you will find them useful.</p>
+			<p>YinYin's Aeron - <a href="https://www.lf-empire.de/forum/showthread.php?tid=115" target="_blank">thread</a> and <a href="https://github.com/szymor/misc/blob/master/lf2-ai/aeron/ai.as" target="_blank">script</a>.</p>
+			<p>YinYin and Siegvar's Frozen - <a href="https://www.lf-empire.de/forum/showthread.php?tid=6961" target="_blank">thread</a> and <a href="https://github.com/szymor/misc/blob/master/lf2-ai/frozen/ai.as" target="_blank">script</a>.</p>
+			<p>YinYin's Silva - <a href="https://www.lf-empire.de/lfe-fileplanet/characters/394-silva" target="_blank">download link</a> and <a href="https://github.com/szymor/misc/blob/master/lf2-ai/silva/ai.as" target="_blank">script</a>.</p>
+			<br><h4>other little things</h4>
+			<p>Things too little to give them a separate section, but too noticeable to forget about them.</p>
+			<p>texture list and map formats of <a href="http://recreationalwarfare.atspace.com/index_willem.html" target="_blank">RecWar</a> - <a href="https://github.com/szymor/misc/blob/master/recwar-texture-map-formats.txt" target="_blank">click!</a></p>
+			<p>music files extracted from PuzzPower 2.0 - <a href="https://github.com/szymor/misc/tree/master/puzztracks" target="_blank">click!</a></p>
+		</div>
+		<!-- Content 35 (End) -->
+		<!-- Content 39 -->
+		<div id="content-39">
+			<h3>tiny opk viewer</h3>
+			<p>A simple tool for viewing OpenDingux and RetroFW packages. It supports opening OPKs from both CLI and GUI. Windows users should be especially delighted as there are few programs of its kind. More information and source code are available on <a href="https://github.com/szymor/opkview" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 39 (End) -->
+		<!-- Content 40 -->
+		<div id="content-40">
+			<h3>12 diode clock</h3>
+			<p>A 12 diode clock, in which each diode represents one digit on the clock face (just like in any analog clock). More information, schematics and source code are available on <a href="https://github.com/szymor/clock12" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 40 (End) -->
+		<!-- Content 41 -->
+		<div id="content-41">
+			<h3>binary clock</h3>
+			<p>A <a href="https://en.wikipedia.org/wiki/Binary_clock" target="_blank">binary clock</a> with an infrared receiver and a thermometer. More information, schematics and source code are available on <a href="https://github.com/szymor/binclock" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 41 (End) -->
+		<!-- Content 42 -->
+		<div id="content-42">
+			<h3>USB-controlled SMPS</h3>
+			<p>A <a href="https://en.wikipedia.org/wiki/Switched-mode_power_supply" target="_blank">switched-mode power supply</a> with a <a href="https://en.wikipedia.org/wiki/Forward_converter" target="_blank">forward converter</a>. Output voltage and current limits are possible to control via USB and a knob on the front panel. The device does not need any non-standard drivers as it uses USB HID protocol. More information, schematics and source code of firmware and host software are available on <a href="https://github.com/szymor/usb-smps" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 42 (End) -->
+		<!-- Content 49 -->
+		<div id="content-49">
+			<h3>related work</h3>
+			<h4>publications</h4>
+			<p><i>Build your own controller for Pegasus (NES clone)!</i> - an article in <a href="https://pagedout.institute/" target="_blank">Paged Out!</a> #1. The full source code of the related project (never finished) can be found on <a href="https://github.com/szymor/wirelessness" target="_blank">GitHub</a>.</p>
+		</div>
+		<!-- Content 49 (End) -->
+		<!-- Content 90 -->
+		<div id="content-90">
+			<h3>about</h3>
+			<p>This site is yet another project of mine in search of a perfect form.</p>
+			<p>If you like things I create, consider <a href="https://paypal.me/szymor" target="_blank">PayPal donation</a> or Bitcoin donation at bc1qxwzvk4qs7geleauw33wylyumf26p8hk677rlla. Getting tips motivates me to spend more time on porting and game development.</p>
+			<p>Contact (e-mail): szymorawski at pm dot me</p>
+		</div>
+		<!-- Content 90 (End) -->
+	</div>
+	<!-- Content (end) -->
+	<!-- Footer -->
+	<div id="footer">
+		<span>&copy;</span> 2020-2021
+	</div>
+	<!-- Footer (end) -->
+	<!-- Scripts -->
+	<script async defer data-domain="szymor.github.io" src="https://plausible.kerrex.pl/js/plausible.js"></script>
+	<script src="js/main.js"></script>
+	<!-- Scripts (end) -->
+</body>
 </html>
