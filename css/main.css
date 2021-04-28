@@ -1,0 +1,74 @@
+/* Common */
+body
+{
+	background-color: rgb(32, 32, 32);
+}
+div
+{
+	font-family: sans-serif;
+	color: lavender;
+}
+ul
+{
+	list-style-type: none;
+	padding-left: 1em;
+}
+/* Layout */
+a
+{
+	color: firebrick;
+	text-decoration: none;
+	padding-left: 0em;
+	transition-duration: 0.5s;
+	display: inline-block;
+	cursor: pointer;
+}
+a:hover
+{
+	color: red;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+}
+a:hover.mlink
+{
+	padding-left: 0.5em;
+	transition-duration: 0.5s;
+}
+a img
+{
+	border: solid 2px firebrick;
+	transition-duration: 0.5s;
+}
+a:hover img
+{
+	border: solid 2px red;
+	transition-duration: 0.5s;
+}
+#header
+{
+	left: 40px;
+	position: fixed;
+	top: 10px;
+}
+#footer
+{
+	left: 40px;
+	position: fixed;
+	bottom: 10px;
+}
+#menu
+{
+	top: 40px;
+	width: 280px;
+	position: fixed;
+}
+#content
+{
+	top: 0px;
+	left: 280px;
+	margin-right: 2em;
+	position: absolute;
+	text-align: justify;
+	text-justify: inter-word;
+}

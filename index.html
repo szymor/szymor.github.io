@@ -4,91 +4,7 @@
     <title>vmsth's homepage</title>
     <meta content="">
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/common.css">
-    <style>
-      a
-      {
-        color: firebrick;
-        text-decoration: none;
-		padding-left: 0em;
-		transition-duration: 0.5s;
-		display: inline-block;
-		cursor: pointer;
-      }
-      a:hover
-      {
-        color: red;
-        text-decoration: none;
-		display: inline-block;
-		cursor: pointer;
-      }
-      a:hover.mlink
-      {
-		padding-left: 0.5em;
-		transition-duration: 0.5s;
-      }
-	  a img
-	  {
-	    border: solid 2px firebrick;
-		transition-duration: 0.5s;
-	  }
-	  a:hover img
-	  {
-	    border: solid 2px red;
-		transition-duration: 0.5s;
-	  }
-      #header
-      {
-        left: 40px;
-        position: fixed;
-		top: 10px;
-      }
-      #footer
-      {
-        left: 40px;
-        position: fixed;
-		bottom: 10px;
-      }
-      #menu
-      {
-        top: 40px;
-        width: 280px;
-        position: fixed;
-      }
-      #content
-      {
-	    top: 0px;
-		left: 280px;
-		margin-right: 2em;
-        position: absolute;
-		text-align: justify;
-		text-justify: inter-word;
-      }
-    </style>
-    <script>
-	function adjustFooter() {
-		footer = document.getElementById("footer");
-		menu = document.getElementById("menu");
-		frect = footer.getBoundingClientRect();
-		mrect = menu.getBoundingClientRect();
-		if (mrect.bottom > frect.top)
-			footer.style.visibility = "hidden";
-		else
-			footer.style.visibility = "visible";
-	}
-	function showContent(num) {
-		for (i = 0; i < 100; ++i) {
-			content = document.getElementById("content" + i);
-			if (content) {
-				if (i == num)
-					content.style.display = "inline-block";
-				else
-					content.style.display = "none";
-			}
-		}
-	}
-    </script>
-    <script async defer data-domain="szymor.github.io" src="https://plausible.kerrex.pl/js/plausible.js"></script>
+	<link rel="stylesheet" href="css/main.css">
   </head>
   <body onresize="adjustFooter()">
   <div id="header">
@@ -288,8 +204,12 @@
   <p>If you like things I create, consider <a href="https://paypal.me/szymor" target="_blank">PayPal donation</a> or Bitcoin donation at bc1qxwzvk4qs7geleauw33wylyumf26p8hk677rlla. Getting tips motivates me to spend more time on porting and game development.</p>
   <p>Contact (e-mail): szymorawski at pm dot me</p>
   </div>
+  </div>
+	  <!-- Scripts -->
+	  <script async defer data-domain="szymor.github.io" src="https://plausible.kerrex.pl/js/plausible.js"></script>
+	  <script src="js/main.js"></script>
+	  <script type="text/javascript">
+		showContent(90);
+	  </script>
   </body>
-  <script>
-	showContent(90);
-  </script>
 </html>
