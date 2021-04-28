@@ -12,14 +12,23 @@ function adjustFooter() {
 function showContent(num) {
 	var content = document.querySelectorAll('[id*="content-"]');
 	
-	Array.prototype.forEach.call(content, function(elem){
+	content.forEach.call(content, function(elem) {
 		elem.style.display = (elem.id == "content-"+num) ? "inline-block" : "none";
 	});
 }
 
 // On load
 window.onload = function() {
-	showContent(90);
+	var defaultContent = document.getElementById("content").getAttribute("data-default");
+	var menuLinks = document.querySelectorAll(".mlink");
+	
+	// Show default content
+	showContent(defaultContent);
+	
+	// Enable menu contents by link
+	menuLinks.forEach(elem => elem.addEventListener("click", event => {
+		showContent(event.target.getAttribute("data-target"));
+	}));
 };
 
 // On resize
