@@ -1,0 +1,163 @@
+
+
+<html lang="pl-PL">
+<head>
+<meta charset="UTF-8">
+<style TYPE="text/css">
+
+TD, A, A:hover{font: 11px Verdana; text-decoration: none;}
+.top {font-family: "Times"; font-size=12px; }
+.tyt {font:bold 11px Verdana;}
+.tyt2 {font: 11px Verdana; color: #800000; text-align: justify;}
+</style>
+
+<script language="JavaScript">
+
+var pages = 191;
+
+var offset = 0;
+
+
+          /*      This function concerts numbers to strings               */
+
+function CvtNtoS(iNum)
+{
+	return ("" + iNum);
+
+}
+
+          /* This function prefixes strings with the correct # of 0's      */
+
+
+function ZeroFill(iNum, iDigits)
+{     
+      var sNum = CvtNtoS(iNum); 
+      while (sNum.length < iDigits)
+	    sNum = "0" + sNum;
+       return sNum;
+}
+
+function this_page(iIndex) {
+
+     if (iIndex<1 || iIndex> pages) {
+
+     window.alert('Strona o podanym numerze nie istnieje');
+     } else {
+              iIndex = parseInt(document.forma.page.value)+offset;
+	      iIndex = ZeroFill(iIndex, 3); 
+  
+	      sSlideImage  = "img" + iIndex + ".html"; 
+              top.SlideImage.location.href = sSlideImage;
+     }
+     return false;
+}
+
+function prev() {
+	iIndex = document.forma.page.value;
+	if(iIndex <= 1 || iIndex > pages) {
+		window.alert('Strona o podanym numerze nie istnieje');
+	} else {
+	        iIndex = parseInt(document.forma.page.value)+offset;
+		iIndex--;
+	        iIndex = ZeroFill(iIndex, 3); 
+	        sSlideImage  = "img" + iIndex + ".html"; 
+		top.SlideImage.location.href = sSlideImage;
+		iIndex = iIndex-offset;
+		document.forma.page.value = iIndex;
+	}
+}
+
+function next() {
+	iIndex = document.forma.page.value;
+	if(iIndex >= pages || iIndex < 0)  {
+		window.alert('Strona o podanym numerze nie istnieje');
+	} else {
+	        iIndex = parseInt(document.forma.page.value)+offset;
+		iIndex++;
+	        iIndex = ZeroFill(iIndex, 3); 
+	        sSlideImage  = "img" + iIndex + ".html"; 
+		top.SlideImage.location.href = sSlideImage;
+		iIndex = iIndex-offset;
+		document.forma.page.value = iIndex;
+		
+		
+	}
+}
+
+
+function page(arg) {
+	document.forma.page.value=arg;
+	
+}
+
+
+
+
+
+
+</script>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#EEE8CD" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+
+
+<br>
+
+<font class="tyt">
+Autor:<br>
+<font class="tyt2">Tadeusiewicz, Ryszard (1947- ).</FONT><br>
+Tytuł:<br>
+<font class="tyt2">Problemy biocybernetyki.
+</FONT><br>
+Oznaczenie wydania:<br>
+<font class="tyt2">Wyd. 2
+</FONT><br>
+Adres wydawniczy:<br>
+<font class="tyt2">Warszawa : Wydaw. Naukowe PWN, 1994.</FONT><br>
+
+
+
+</TABLE>
+<TABLE>
+
+
+</br>
+
+</table>
+
+<hr size=1>
+
+<a href=problemybiocybernetyki.zip>cały tekst do pobrania</a><br>format zip (ok. 16MB)<hr size=1>
+
+<br>
+<table border=0 CELLSPACING="0" CELLPADDING="0">
+<tr><td height=25>strona:&nbsp;</td>
+<td align=center>
+<script LANGUAGE="JavaScript"> 
+<!--
+
+document.write("<i>(1-"+pages+")</i>");
+-->
+</script>
+
+</td></tr>
+
+<tr valign=top>
+
+<td align=right><a HREF="javascript: ;"><IMG SRC="prev.gif" ALT="Wstecz" BORDER=0  width=30 height=22 onclick="prev()"></A>&nbsp;</TD>
+<td align=center>
+<form action="#" method="get" name="forma" id="forma" onSubmit="return this_page(document.forma.page.value)">
+<input name="page" type="text" value="1" size="3" MAXLENGTH="3" onChange="this_page(this.value)">
+<INPUT TYPE="submit" value="idź do"  onChange="this_page(this.value)">
+</form>
+</td>
+<td>&nbsp;<a HREF="javascript: ;"><IMG SRC="next.gif" ALT="Dalej" BORDER=0  width=30 height=22  onclick="next()"></A></TD>
+
+</tr>
+</table>
+<hr size=1>
+<p>
+
+
+</font>
+</BODY>
+</HTML>
