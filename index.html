@@ -49,6 +49,7 @@
 					<li><a class="mlink" data-target="33">yatka</a> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/szymor/yatka?color=firebrick&label=%E2%98%85&style=plastic"></li>
 					<li><a class="mlink" data-target="38">retroguru ports</a></li>
 					<li><a class="mlink" data-target="34">ports of 3rd party games</a></li>
+					<li><a class="mlink" data-target="52">soulfu modding</a></li>
 					<li><a class="mlink" data-target="35">related work</a></li>
 				</ul>
 			</li>
@@ -131,8 +132,8 @@
 			<h3>related work</h3>
 			<p>Berserk - see models, yatka</p>
 			<p>Claymore - see models</p>
-			<p>FLCL Progressive - <a href="https://github.com/szymor/misc/blob/master/subs/flcl-progressive.ass" target="_blank">subtitles</a> for BDRip by SweetSub and VCB-Studio modified by me to match video timing</p>
-			<p>FLCL Alternative - <a href="https://github.com/szymor/misc/blob/master/subs/flcl-alternative.ass" target="_blank">subtitles</a> for BDRip by SweetSub and VCB-Studio modified by me to match video timing</p>
+			<p>FLCL Progressive and FLCL Alternative - <a href="https://github.com/szymor/misc/tree/master/subs/FLCL" target="_blank">subtitles</a> for BDRip by SweetSub and VCB-Studio modified by me to match video timing</p>
+			<p>Agent AIKa R-16 Virgin Mission - <a href="https://github.com/szymor/misc/tree/master/subs/Agent%20AIKa%20R-16%20Virgin%20Mission" target="_blank">subtitles</a> for DVD Rip (800x442) by Shiniori-Raws, transcribed and translated by OpenAI Whisper (medium model). Poor (but understandable) translation for poor anime.</p>
 		</div>
 		<!-- Content 21 (End) -->
 		<!-- Content 30 -->
@@ -239,6 +240,21 @@
 			<p><img alt="GitHub all releases" src="https://img.shields.io/github/downloads/szymor/Worship-Vector/total?color=firebrick&style=plastic"> <a href="https://github.com/szymor/Worship-Vector" target="_blank"><b>Worship Vector</b></a> - PocketGo.</p>
 		</div>
 		<!-- Content 34 (End) -->
+		<!-- Content 52 -->
+		<div id="content-52">
+			<h3>soulfu modding</h3>
+			<p>SoulFu (Secret of Ultimate Legendary Fantasy Unleashed) is an open-source 3D arcade/roguelike/RPG game by Aaron Bishop. The official site is <a href="http://www.aaronbishopgames.com/" target="_blank">here</a>.</p>
+			<p>The game gathered a little community around it a few years ago. Unfortunately, it never got enough popularity to be developed steadily in the long run. The original license of the game (niceware) also caused issues with hosting the code on the platforms like sourceforge. The architecture of the game also contributed to the lack of developers. To sum up:</p>
+			<ul>
+			<li>game resources are confined in a single archive binary, which can only be edited by internal development tools - sharing code changes between developers is problematic this way,</li>
+			<li>most file formats used in the archive are custom-made - scripts, 3D models, language files, etc. are all written in a way that makes it hard or impossible to edit with any external tool,</li>
+			<li>code works properly only on 32 bit platforms - porting it to 64 bits is not a trivial thing as it requires to redesign the existing archive format,</li>
+			<li>original code was dependent on modified external libraries, which made it even more difficult to port.</li>
+			</ul>
+			<p>I decided to make development and modding of the game easier by applying some patches by anonymous developers and creating an external toolset. The primary goal was to make all the changes more shareable. I think I managed to do so to some extent.</p>
+			<p>The base repository of the project is at <a href="https://github.com/szymor/soulfu" target="_blank">GitHub</a>. You can track the progress there. The subrepositories for individual tools (data packer, 3D model converter, etc.) are included in the project in the form of git submodules.</p>
+		</div>
+		<!-- Content 52 (End) -->
 		<!-- Content 35 -->
 		<div id="content-35">
 			<h3>related work</h3>
