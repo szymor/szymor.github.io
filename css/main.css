@@ -31,10 +31,6 @@ div {
 	font-family: sans-serif;
 	color: lavender;
 }
-ul {
-	list-style-type: none;
-	padding-left: 1em;
-}
 /* Common */
 /* Layout */
 a, a:visited, a:hover, a:active, a:focus {
@@ -80,6 +76,10 @@ a:hover img {
 	display: none;
 	margin: 0px;
 	cursor: pointer;
+}
+#menu ul {
+	list-style-type: none;
+	padding-left: 1em;
 }
 #menu h3 span {
 	display: inline-block;
@@ -131,6 +131,7 @@ div[id*="content-"] {
 		display: block;
 	}
 	#menu ul {
+		list-style-type: none;
 		padding-left: 0px;
 		padding-right: 1em;
 	}
